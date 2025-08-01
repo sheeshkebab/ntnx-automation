@@ -9,17 +9,17 @@
   - name : Debug NUTANIX_USERNAME
     debug:
       msg: "the username is {{ nutanix_username }}"
-      verbosity: 3
+      #verbosity: 3   tested with job template verbosity set to 3
     when: nutanix_username is defined
 
   - name : Debug NUTANIX_HOSTNAME
     debug:
       msg: "the hostname is {{ nutanix_hostname }}"
-      verbosity: 3
+      #verbosity: 3   tested with job template verbosity set to 3
     when: nutanix_hostname is defined
 
   - name : Debug NUTANIX_PASSWORD
     debug:
       msg: "the password is {{ nutanix_password }}"
-      verbosity: 3
+      #verbosity: 3   tested with job template verbosity set to 3
     when: nutanix_password is defined
