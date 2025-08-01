@@ -1,0 +1,11 @@
+---
+- name: Debug connection variables
+  hosts: localhost 
+  vars:
+    nutanix_username: "{{ lookup('env', 'NUTANIX_USERNAME', errors='warn') }}"
+  tasks:
+  - name : Debug
+    debug:
+      msg: "the username is {{ nutanix_username }}"
+      verbosity: 3
+    when: nutanix_username is defined
