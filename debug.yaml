@@ -1,6 +1,6 @@
 ---
 - name: Debug connection variables
-  hosts: all
+  hosts: rheljump01-rh
   vars:
     nutanix_username: "{{ lookup('env', 'NUTANIX_USERNAME', errors='warn') }}"
     nutanix_hostname: "{{ lookup('env', 'NUTANIX_HOSTNAME', errors='warn') }}"
@@ -26,7 +26,7 @@
 
 
 - name: Configure Web Server on Rocky Linux
-  hosts: all # This refers to a group defined in your inventory file
+  hosts: rheljump01-rh # This refers to a group defined in your inventory file
   become: true # Run tasks with elevated privileges (sudo)
 
   tasks:
