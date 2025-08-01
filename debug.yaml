@@ -1,6 +1,6 @@
 ---
 - name: Debug connection variables
-  hosts: localhost 
+  hosts: all
   vars:
     nutanix_username: "{{ lookup('env', 'NUTANIX_USERNAME', errors='warn') }}"
     nutanix_hostname: "{{ lookup('env', 'NUTANIX_HOSTNAME', errors='warn') }}"
@@ -23,3 +23,31 @@
       msg: "the password is {{ nutanix_password }}"
       #verbosity: 3   tested with job template verbosity set to 3
     when: nutanix_password is defined
+
+
+- name: Second play where we do some much cooler things
+
+---
+- name: Configure Web Server on Rocky Linux
+  hosts: all # This refers to a group defined in your inventory file
+  become: true # Run tasks with elevated privileges (sudo)
+
+  tasks:
+    - name: Install Apache web server
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Ensure Apache is running and enabled
+      systemd:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Deploy a simple index.html
+      copy:
+        content: "<h1>Hello from Rocky Linux Web Server!</h1>"
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: '0644'
