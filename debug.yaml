@@ -25,9 +25,6 @@
     when: nutanix_password is defined
 
 
-- name: Second play where we do some much cooler things
-
----
 - name: Configure Web Server on Rocky Linux
   hosts: all # This refers to a group defined in your inventory file
   become: true # Run tasks with elevated privileges (sudo)
